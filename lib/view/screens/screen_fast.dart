@@ -31,9 +31,9 @@ class _ScreenFastState extends State<ScreenFast> {
     super.initState();
     const increments = 4;
     Duration duration = Duration(hours: 0);
-    for (int i = 0; i < increments*24; i++) {
-      duration += Duration(minutes: (60/increments).floor());
+    for (int i = 0; i < increments*24 + 2; i++) {
       _times.add(duration);
+      duration += Duration(minutes: (60/increments).floor());
     }
     print(_times);
   }
@@ -41,8 +41,8 @@ class _ScreenFastState extends State<ScreenFast> {
   String timetoString(int minutes) {
     int hours = (minutes/60).floor();
     minutes -= (hours*60);
-    bool morning = hours/12 >= 0;
-    String hourString = (hours%12).toString() + "h";
+    bool morning = hours%12 == 0 || hours <= 12;
+    String hourString = (hours%12 == 0 ? 12 : hours%12).toString() + "h";
     return (hourString + " " + minutes.toString() + " " +  (morning? "am" : "pm")); 
   }
 
