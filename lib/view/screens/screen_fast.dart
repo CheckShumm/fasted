@@ -7,7 +7,6 @@ import 'package:flutter/widgets.dart';
 class ScreenFast extends StatefulWidget implements ScreenWidget {
 
   final Screen screen;
-  final WidgetTimer timer = new WidgetTimer(); 
 
   ScreenFast({Key key, @required this.screen}) : super(key: key);
 
@@ -53,7 +52,10 @@ class _ScreenFastState extends State<ScreenFast> {
     print(timetoString(start.inMinutes));
     return  Column(
       children: <Widget>[
-        this.widget.timer,
+        WidgetTimer(
+          startFast: start,
+          endFast: end,
+        ),
         RangeSlider(
           activeColor: Colors.black,
           inactiveColor: Colors.black,
@@ -71,14 +73,26 @@ class _ScreenFastState extends State<ScreenFast> {
             });
           },
         ),
-        Text( 
-          "streak. 6d",
-          style: TextStyle(
-            fontSize: 28,
-            fontWeight: FontWeight.w800, 
-            color: Colors.black
-          )
-        )
+        OutlineButton(
+            color: Colors.black,
+            textColor: Colors.black,
+            padding: EdgeInsets.all(16.0),
+            splashColor: Colors.grey,
+            highlightedBorderColor: Colors.black,
+            borderSide: BorderSide(
+              color: Colors.black54,
+              width: 1.0,
+              style: BorderStyle.solid
+            ),
+            shape: new RoundedRectangleBorder(
+              borderRadius: new BorderRadius.circular(8.0),
+            ),
+            onPressed: () => {},
+            child: Text(
+              "End Fast",
+              style: TextStyle(fontSize: 16.0)
+            )
+          ),
       ],
     );
   }

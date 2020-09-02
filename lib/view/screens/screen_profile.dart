@@ -1,5 +1,6 @@
 import 'package:fasted/view/screens/screen.dart';
 import 'package:fasted/view/screens/screen_widget.dart';
+import 'package:fasted/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -27,52 +28,30 @@ class _ScreenProfileState extends State<ScreenProfile> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: OutlineButton(
-            color: Colors.black,
-            textColor: Colors.black,
-            padding: EdgeInsets.all(16.0),
-            splashColor: Colors.grey,
-            highlightedBorderColor: Colors.black,
-            borderSide: BorderSide(
-              color: Colors.black54,
-              width: 1.0,
-              style: BorderStyle.solid
-            ),
-            shape: new RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(30.0),
-            ),
-            onPressed: () => {},
-            child: Text(
-              "EMAIL",
-              style: TextStyle(fontSize: 16.0)
-            )
-          ),
-        ),
 
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: OutlineButton(
-            color: Colors.red[300],
-            textColor: Colors.red[300],
-            padding: EdgeInsets.all(16.0),
+        CustomButton(
+          text: 'Email',
+          textColor: Colors.black,
+          color: Colors.white,
+          splashColor: Colors.black26,
+          iconPath: 'email.png',
+        ),
+      
+        CustomButton(
+            text: 'Google',
+            color: Colors.white,
+            textColor: Colors.grey,
             splashColor: Colors.red[200],
-            highlightedBorderColor: Colors.red[300],
-             borderSide: BorderSide(
-              color: Colors.red[200],
-              width: 1.0,
-              style: BorderStyle.solid
-            ),
-            shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0)),
-            onPressed: () => {},
-            child: Text(
-              "GOOGLE",
-              style: TextStyle(fontSize: 16.0)
-            )
-          ),
+            iconPath: 'logo_google.png',
         ),
 
+        CustomButton(
+          text: 'Apple',
+          textColor: Colors.black,
+          color: Colors.white,
+          splashColor: Colors.black26,
+          iconPath: 'logo_apple.png',
+        ),
       ],
     );
   }

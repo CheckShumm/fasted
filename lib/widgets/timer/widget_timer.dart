@@ -10,7 +10,12 @@ class WidgetTimer extends StatefulWidget {
   Color dayColor = Colors.amber;
   Color nightColor = Colors.blue[300];
 
-  WidgetTimer({Key key}) : super(key: key);
+  Duration startFast;
+  Duration endFast;
+
+  WidgetTimer({Key key,
+    @required this.startFast, @required this.endFast
+  }) : super(key: key);
 
   @override
   _WidgetTimerState createState() => _WidgetTimerState();
@@ -23,8 +28,6 @@ class _WidgetTimerState extends State<WidgetTimer> with SingleTickerProviderStat
   Timer _timer;
 
   TimeOfDay _currentTime;
-  TimeOfDay _startFast;
-  TimeOfDay _endFast;
 
   Tween<double> valueTween = Tween<double>(
     begin: 0,
@@ -72,7 +75,7 @@ class _WidgetTimerState extends State<WidgetTimer> with SingleTickerProviderStat
     return Text( 
      TimeOfDay.now().hour.toString() + ":" + TimeOfDay.now().minute.toString(),
       style: TextStyle(
-        fontSize: 40,
+        fontSize: 24,
          fontWeight: FontWeight.w800, 
          color: Colors.black
       )
@@ -93,7 +96,20 @@ class _WidgetTimerState extends State<WidgetTimer> with SingleTickerProviderStat
       builder: (context, child) {
         return CustomPaint( 
           child: Center(
-            child: getProgressText(),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                getProgressText(),
+                Text( 
+                  "streak. 6d",
+                  style: TextStyle(
+                    fontSize: 13,
+                    fontWeight: FontWeight.w800, 
+                    color: Colors.black
+                  )
+                )
+              ]
+            ),
           ),
           foregroundPainter: ProgressPainter(
             colorDay: Colors.amber[300],
@@ -110,8 +126,8 @@ class _WidgetTimerState extends State<WidgetTimer> with SingleTickerProviderStat
             endGoal: _timeToPercentage(20,30),
             startNight: _timeToPercentage(22,0),
             endNight: _timeToPercentage(6,30),
-            startFast: _timeToPercentage(9,0),
-            endFast: _timeToPercentage(19,0),
+            startFast: _timeToPercentage(this.widget.startFast.inHours, 0),
+            endFast: _timeToPercentage(this.widget.endFast.inHours, 0),
           ),
         );
       });
