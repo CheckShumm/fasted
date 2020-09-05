@@ -84,7 +84,7 @@ class ProgressPainter extends CustomPainter{
                                false, paintGoal);
 
     //night time overlap arc
-    if (endFast > endGoal) {
+    if (endFast >= endGoal) {
       canvas.drawArc(Rect.fromCircle(center: center, radius: radius ), 
                                     _toRadians(endFast)-pi/2, _toRadians(endGoal-endFast)*percentage,
                                      false, paintOverlapNight);
@@ -100,7 +100,7 @@ class ProgressPainter extends CustomPainter{
     }
 
     //day time overlap arc
-    if (startFast < startGoal) 
+    if (startFast <= startGoal) 
       canvas.drawArc(Rect.fromCircle(center: center, radius: radius ), 
                                     _toRadians(startGoal)-pi/2, _toRadians(startFast-startGoal), false, paintOverlapDay);
 

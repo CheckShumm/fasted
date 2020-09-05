@@ -73,19 +73,17 @@ class _WidgetTimerState extends State<WidgetTimer> with SingleTickerProviderStat
 
   getProgressText() {
     return Text( 
-     TimeOfDay.now().hour.toString() + ":" + TimeOfDay.now().minute.toString(),
+     TimeOfDay.now().hour.toString() + "h " + TimeOfDay.now().minute.toString() + "m",
       style: TextStyle(
-        fontSize: 24,
-         fontWeight: FontWeight.w800, 
+        fontSize: 32,
+         fontWeight: FontWeight.w400, 
          color: Colors.black
       )
     );
   }
 
-  double _timeToPercentage(int hours, int minutes) {
-    const double hoursDay = 24.0;
-    const double minutesHour = 60.0;
-    return (hours + (minutes/minutesHour))/hoursDay;
+  double _timeToPercentage(int minutes) {
+    return minutes/(60*24);
   }
 
   progressView() {
@@ -103,9 +101,9 @@ class _WidgetTimerState extends State<WidgetTimer> with SingleTickerProviderStat
                 Text( 
                   "streak. 6d",
                   style: TextStyle(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w800, 
-                    color: Colors.black
+                    fontSize: 24,
+                    fontWeight: FontWeight.w300, 
+                    color: Colors.black54
                   )
                 )
               ]
@@ -119,15 +117,15 @@ class _WidgetTimerState extends State<WidgetTimer> with SingleTickerProviderStat
             colorOverlapNight: Colors.green[700],
             colorFast: Colors.green,
             
-            circleWidth: 64.0,
+            circleWidth: 32.0,
             percentage: this.valueTween.evaluate(_controller),
             
-            startGoal: _timeToPercentage(12, 30),
-            endGoal: _timeToPercentage(20,30),
-            startNight: _timeToPercentage(22,0),
-            endNight: _timeToPercentage(6,30),
-            startFast: _timeToPercentage(this.widget.startFast.inHours, 0),
-            endFast: _timeToPercentage(this.widget.endFast.inHours, 0),
+            startGoal: _timeToPercentage(720),
+            endGoal: _timeToPercentage(1200),
+            startNight: _timeToPercentage(1500),
+            endNight: _timeToPercentage(480),
+            startFast: _timeToPercentage(this.widget.startFast.inMinutes),
+            endFast: _timeToPercentage(this.widget.endFast.inMinutes),
           ),
         );
       });

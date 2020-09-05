@@ -24,7 +24,7 @@ class ScreenFast extends StatefulWidget implements ScreenWidget {
 class _ScreenFastState extends State<ScreenFast> {
   
   List<Duration> _times = new List<Duration>();
-  RangeValues _currentRangeValues = RangeValues(1, 45);
+  RangeValues _currentRangeValues = RangeValues(40, 70);
   @override
   void initState() {
     super.initState();
@@ -56,43 +56,49 @@ class _ScreenFastState extends State<ScreenFast> {
           startFast: start,
           endFast: end,
         ),
-        RangeSlider(
-          activeColor: Colors.black,
-          inactiveColor: Colors.black,
-          values: _currentRangeValues,
-          min: 0,
-          max: 96,
-          divisions: 960,
-          labels: RangeLabels(
-            timetoString(start.inMinutes),
-            timetoString(end.inMinutes)
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: RangeSlider(
+            activeColor: Colors.black,
+            inactiveColor: Colors.black,
+            values: _currentRangeValues,
+            min: 0,
+            max: 96,
+            divisions: 960,
+            labels: RangeLabels(
+              timetoString(start.inMinutes),
+              timetoString(end.inMinutes)
+            ),
+            onChanged: (RangeValues values) {
+              setState(() {
+                _currentRangeValues = values;
+              });
+            },
           ),
-          onChanged: (RangeValues values) {
-            setState(() {
-              _currentRangeValues = values;
-            });
-          },
         ),
-        OutlineButton(
-            color: Colors.black,
-            textColor: Colors.black,
-            padding: EdgeInsets.all(16.0),
-            splashColor: Colors.grey,
-            highlightedBorderColor: Colors.black,
-            borderSide: BorderSide(
-              color: Colors.black54,
-              width: 1.0,
-              style: BorderStyle.solid
+        SizedBox(
+              width: 300,
+              child: OutlineButton(
+              color: Colors.black,
+              textColor: Colors.black,
+              padding: EdgeInsets.all(16.0),
+              splashColor: Colors.grey,
+              highlightedBorderColor: Colors.black,
+              borderSide: BorderSide(
+                color: Colors.black54,
+                width: 1.0,
+                style: BorderStyle.solid
+              ),
+              shape: new RoundedRectangleBorder(
+                borderRadius: new BorderRadius.circular(8.0),
+              ),
+              onPressed: () => {},
+              child: Text(
+                "End Fast",
+                style: TextStyle(fontSize: 16.0)
+              )
             ),
-            shape: new RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(8.0),
-            ),
-            onPressed: () => {},
-            child: Text(
-              "End Fast",
-              style: TextStyle(fontSize: 16.0)
-            )
-          ),
+        ),
       ],
     );
   }

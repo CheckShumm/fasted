@@ -17,8 +17,8 @@ class ScreensContainer extends StatefulWidget {
   
   final List<ScreenWidget> screenWidgetList = [
     ScreenProfile(screen: new Screen("Profile", Colors.blue, Icons.person_outline)), 
-    ScreenFast(screen: new Screen("Fast", Colors.green, Icons.timelapse)), 
-    ScreenData(screen: new Screen("Data", Colors.amber, Icons.table_chart)), 
+    ScreenFast(screen: new Screen("Fast", Colors.green, Icons.schedule)), 
+    ScreenData(screen: new Screen("Data", Colors.amber, Icons.show_chart)), 
     ScreenHealth(screen: new Screen("Health", Colors.red, Icons.favorite_border))
     ];
 
