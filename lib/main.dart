@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:fasted/view/onboarding/onboarding_container.dart';
+import 'package:fasted/view/onboarding_container.dart';
 import 'package:fasted/view/screens_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
     FlutterStatusbarcolor.setStatusBarColor(Colors.black);
     return MaterialApp(
       title: 'fasted',
-      home: OnBoardingContainer(),
+      home: home,
       // routes: <String, WidgetBuilder>{
       //   // Set routes for using the Navigator.
       //   '/home': (BuildContext context) => new ScreensContainer(),
