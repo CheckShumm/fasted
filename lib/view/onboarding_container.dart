@@ -1,13 +1,6 @@
 import 'package:fasted/view/screens/screen.dart';
-import 'package:fasted/view/screens/screen_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:fasted/widgets/custom_buttom_navigation_bar.dart';
-
-import 'package:fasted/view/screens/screen_data.dart';
-import 'package:fasted/view/screens/screen_fast.dart';
-import 'package:fasted/view/screens/screen_health.dart';
-import 'package:fasted/view/screens/screen_profile.dart';
 
 class OnBoardingContainer extends StatefulWidget {
   OnBoardingContainer({Key key}) : super(key: key);
@@ -15,7 +8,7 @@ class OnBoardingContainer extends StatefulWidget {
   final String title = 'fasted';
   final List<Screen> screens = [ ];
   
-  final List<OnBoardingWidget> OnBoardingWidgetList = [
+  final List<Widget> OnBoardingWidgetList = [];
 
 
   @override
@@ -55,20 +48,8 @@ class _OnBoardingContainerState extends State<OnBoardingContainer> {
         height: heightScreen - heightAppBar,
         margin: const EdgeInsets.all(10.0),
         alignment: Alignment.center,
-        child: this.widget.OnBoardingWidgetList[_selectedIndex].getWidget()
+        child: this.widget.OnBoardingWidgetList[_selectedIndex]
       ),
-      bottomNavigationBar: CustomBottomNavigationBar(
-        height: heightBottomNavigationBar,
-        currentIndex: _selectedIndex,
-        screens: List.generate(widget.OnBoardingWidgetList.length, 
-          (index) => this.widget.OnBoardingWidgetList[index].getScreen()
-        ),
-        onTap: (index) => {
-          setState(() {
-            _selectedIndex = index;
-          })
-        }
-      )
     );
   }
 }

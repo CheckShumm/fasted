@@ -19,7 +19,6 @@ class _OnboardingFastState extends State<OnboardingFast> {
             style: TextStyle(
               color: Colors.black26,
               fontSize: 24.0,
-
             )
           )
        ],

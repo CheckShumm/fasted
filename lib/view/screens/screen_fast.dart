@@ -1,8 +1,10 @@
 import 'package:fasted/view/screens/screen.dart';
 import 'package:fasted/view/screens/screen_widget.dart';
+import 'package:fasted/widgets/buttons/custom_button.dart';
 import 'package:fasted/widgets/timer/widget_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:fasted/widgets/buttons/custom_button_outlined.dart';
 
 class ScreenFast extends StatefulWidget implements ScreenWidget {
 
@@ -56,8 +58,15 @@ class _ScreenFastState extends State<ScreenFast> {
           startFast: start,
           endFast: end,
         ),
+        CustomButton(
+          text: "8:16",
+          textColor: Colors.white,
+          color: Colors.green[300],
+          splashColor: Colors.green[50],
+        ),
+        
         Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(8.0),
           child: RangeSlider(
             activeColor: Colors.black,
             inactiveColor: Colors.black,
@@ -76,29 +85,14 @@ class _ScreenFastState extends State<ScreenFast> {
             },
           ),
         ),
-        SizedBox(
-              width: 300,
-              child: OutlineButton(
-              color: Colors.black,
-              textColor: Colors.black,
-              padding: EdgeInsets.all(16.0),
-              splashColor: Colors.grey,
-              highlightedBorderColor: Colors.black,
-              borderSide: BorderSide(
-                color: Colors.black54,
-                width: 1.0,
-                style: BorderStyle.solid
-              ),
-              shape: new RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(8.0),
-              ),
-              onPressed: () => {},
-              child: Text(
-                "End Fast",
-                style: TextStyle(fontSize: 16.0)
-              )
-            ),
-        ),
+        CustonButtonOutlined(
+          color: Colors.black,
+          splashColor: Colors.grey,
+          text: "End Fast",
+          textColor: Colors.black,
+          borderColor: Colors.black,
+          width: 300,
+        )
       ],
     );
   }
