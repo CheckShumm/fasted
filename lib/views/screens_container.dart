@@ -1,13 +1,13 @@
-import 'package:fasted/view/screens/screen.dart';
-import 'package:fasted/view/screens/screen_widget.dart';
+import 'package:fasted/views/screens/screen.dart';
+import 'package:fasted/views/screens/screen_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:fasted/widgets/custom_buttom_navigation_bar.dart';
 
-import 'package:fasted/view/screens/screen_data.dart';
-import 'package:fasted/view/screens/screen_fast.dart';
-import 'package:fasted/view/screens/screen_health.dart';
-import 'package:fasted/view/screens/screen_profile.dart';
+import 'package:fasted/views/screens/screen_data.dart';
+import 'package:fasted/views/screens/screen_fast.dart';
+import 'package:fasted/views/screens/screen_health.dart';
+import 'package:fasted/views/screens/screen_profile.dart';
 
 class ScreensContainer extends StatefulWidget {
   ScreensContainer({Key key}) : super(key: key);

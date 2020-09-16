@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'package:fasted/view/onboarding_container.dart';
-import 'package:fasted/view/screens_container.dart';
+import 'package:fasted/views/onboarding_container.dart';
+import 'package:fasted/views/screens_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:shared_preferences/shared_preferences.dart';

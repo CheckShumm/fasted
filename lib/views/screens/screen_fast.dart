@@ -1,5 +1,5 @@
-import 'package:fasted/view/screens/screen.dart';
-import 'package:fasted/view/screens/screen_widget.dart';
+import 'package:fasted/views/screens/screen.dart';
+import 'package:fasted/views/screens/screen_widget.dart';
 import 'package:fasted/widgets/buttons/custom_button.dart';
 import 'package:fasted/widgets/timer/widget_timer.dart';
 import 'package:flutter/material.dart';
@@ -36,7 +36,6 @@ class _ScreenFastState extends State<ScreenFast> {
       _times.add(duration);
       duration += Duration(minutes: (60/increments).floor());
     }
-    print(_times);
   }
 
   String timetoString(int minutes) {

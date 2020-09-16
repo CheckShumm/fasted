@@ -1,21 +1,32 @@
-import 'package:fasted/view/screens/screen.dart';
+import 'package:fasted/views/screens/screen.dart';
+import 'package:fasted/views/screens/screen_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:fasted/widgets/custom_buttom_navigation_bar.dart';
 
-class OnBoardingContainer extends StatefulWidget {
-  OnBoardingContainer({Key key}) : super(key: key);
+import 'package:fasted/views/screens/screen_data.dart';
+import 'package:fasted/views/screens/screen_fast.dart';
+import 'package:fasted/views/screens/screen_health.dart';
+import 'package:fasted/views/screens/screen_profile.dart';
+
+class AboutContainer extends StatefulWidget {
+  AboutContainer({Key key}) : super(key: key);
 
   final String title = 'fasted';
   final List<Screen> screens = [ ];
   
-  final List<Widget> OnBoardingWidgetList = [];
-
+  final List<ScreenWidget> screenWidgetList = [
+    ScreenProfile(screen: new Screen("Profile", Colors.blue, Icons.person_outline)), 
+    ScreenFast(screen: new Screen("Fast", Colors.green, Icons.schedule)), 
+    ScreenData(screen: new Screen("Data", Colors.amber, Icons.show_chart)), 
+    ScreenHealth(screen: new Screen("Health", Colors.red, Icons.favorite_border))
+    ];
 
   @override
-  _OnBoardingContainerState createState() => _OnBoardingContainerState();
+  _AboutContainerState createState() => _AboutContainerState();
 }
 
-class _OnBoardingContainerState extends State<OnBoardingContainer> {
+class _AboutContainerState extends State<AboutContainer> {
 
   int _selectedIndex = 2;
 
@@ -48,7 +59,7 @@ class _OnBoardingContainerState extends State<OnBoardingContainer> {
         height: heightScreen - heightAppBar,
         margin: const EdgeInsets.all(10.0),
         alignment: Alignment.center,
-        child: this.widget.OnBoardingWidgetList[_selectedIndex]
+        child: this.widget.screenWidgetList[_selectedIndex].getWidget()
       ),
     );
   }

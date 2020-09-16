@@ -1,5 +1,5 @@
-import 'package:fasted/view/screens/screen.dart';
-import 'package:fasted/view/screens/screen_widget.dart';
+import 'package:fasted/views/screens/screen.dart';
+import 'package:fasted/views/screens/screen_widget.dart';
 import 'package:fasted/widgets/buttons/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
