@@ -13,8 +13,12 @@ class WidgetTimer extends StatefulWidget {
   Duration startFast;
   Duration endFast;
 
+  double width;
+  double height;
+
   WidgetTimer({Key key,
-    @required this.startFast, @required this.endFast
+    @required this.startFast, @required this.endFast,
+    @required this.width, @required this.height,
   }) : super(key: key);
 
   @override
@@ -140,8 +144,8 @@ class _WidgetTimerState extends State<WidgetTimer> with SingleTickerProviderStat
          crossAxisAlignment: CrossAxisAlignment.center,
          children: <Widget>[
             Container(
-              height: 300.0,
-              width: 300.0,
+              height: this.widget.height,
+              width: this.widget.width,
               padding: EdgeInsets.all(20.0),
               margin: EdgeInsets.all(30.0),
               child: progressView()

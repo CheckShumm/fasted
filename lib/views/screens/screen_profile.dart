@@ -1,6 +1,6 @@
 import 'package:fasted/views/screens/screen.dart';
 import 'package:fasted/views/screens/screen_widget.dart';
-import 'package:fasted/widgets/buttons/custom_button.dart';
+import 'package:fasted/widgets/buttons/custom_button_raised.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -29,7 +29,7 @@ class _ScreenProfileState extends State<ScreenProfile> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
 
-        CustomButton(
+        CustomButtonRaised(
           text: 'Email',
           textColor: Colors.black,
           color: Colors.white,
@@ -37,7 +37,7 @@ class _ScreenProfileState extends State<ScreenProfile> {
           iconPath: 'email.png',
         ),
       
-        CustomButton(
+        CustomButtonRaised(
             text: 'Google',
             color: Colors.white,
             textColor: Colors.grey,
@@ -45,7 +45,7 @@ class _ScreenProfileState extends State<ScreenProfile> {
             iconPath: 'logo_google.png',
         ),
 
-        CustomButton(
+        CustomButtonRaised(
           text: 'Apple',
           textColor: Colors.black,
           color: Colors.white,

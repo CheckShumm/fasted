@@ -1,6 +1,6 @@
 import 'package:fasted/views/screens/screen.dart';
 import 'package:fasted/views/screens/screen_widget.dart';
-import 'package:fasted/widgets/buttons/custom_button.dart';
+import 'package:fasted/widgets/buttons/custom_button_raised.dart';
 import 'package:fasted/widgets/timer/widget_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -48,20 +48,24 @@ class _ScreenFastState extends State<ScreenFast> {
 
   @override
   Widget build(BuildContext context) {
+
+    // screen dimensions
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
+    double timerWidth = 300;
+    double percentHeightTimer = timerWidth / height;
+
     Duration start = _times[_currentRangeValues.start.floor()];
     Duration end = _times[_currentRangeValues.end.floor()];
     print(timetoString(start.inMinutes));
     return  Column(
       children: <Widget>[
         WidgetTimer(
+          width: timerWidth,
+          height: timerWidth,
           startFast: start,
-          endFast: end,
-        ),
-        CustomButton(
-          text: "8:16",
-          textColor: Colors.white,
-          color: Colors.green[300],
-          splashColor: Colors.green[50],
+          endFast: end
         ),
         
         Padding(
@@ -84,6 +88,17 @@ class _ScreenFastState extends State<ScreenFast> {
             },
           ),
         ),
+
+        CustomButtonRaised(
+          text: "8 : 16",
+          textColor: Colors.white,
+          color: Colors.green[300],
+          splashColor: Colors.green[50],
+          onClick: () => {
+            // go to fasting selection screen
+          }
+        ),
+
         CustonButtonOutlined(
           color: Colors.black,
           splashColor: Colors.grey,
