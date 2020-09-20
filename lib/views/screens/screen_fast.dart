@@ -29,7 +29,7 @@ class _ScreenFastState extends State<ScreenFast> {
   RangeValues _currentRangeValues = RangeValues(40, 70);
   @override
   void initState() {
-    super.initState();
+    super.initState(); 
     const increments = 4;
     Duration duration = Duration(hours: 0);
     for (int i = 0; i < increments*24 + 2; i++) {
@@ -94,7 +94,7 @@ class _ScreenFastState extends State<ScreenFast> {
           textColor: Colors.white,
           color: Colors.green[300],
           splashColor: Colors.green[50],
-          onClick: () => {
+          onPressed: () => {
             // go to fasting selection screen
           }
         ),
