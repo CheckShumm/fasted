@@ -9,7 +9,7 @@ class Screen {
 
   Screen(this._title, this._primaryColor, this._icon);
 
-  // ********** Getters & Setters ********** 
+  // ********** Getters & Setters ********** \\
 
   /// returns the screen's primaryColor
   ColorSwatch getPrimaryColor() { return _primaryColor; }

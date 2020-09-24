@@ -89,14 +89,40 @@ class _ScreenFastState extends State<ScreenFast> {
           ),
         ),
 
-        CustomButtonRaised(
-          text: "8 : 16",
-          textColor: Colors.white,
-          color: Colors.green[300],
-          splashColor: Colors.green[50],
-          onPressed: () => {
-            // go to fasting selection screen
-          }
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "started",
+                    style: TextStyle(
+                      fontSize: 12
+                    )
+                  ),
+                  Text(
+                    timetoString(start.inMinutes),
+                    style: TextStyle(
+                      fontSize: 32
+                    )
+                  ),
+                ],
+              ),
+              CustomButtonRaised(
+                text: "8 : 16",
+                width: 100,
+                textColor: Colors.white,
+                color: Colors.green[300],
+                splashColor: Colors.green[50],
+                onPressed: () => {
+                  // go to fasting selection screen
+                }
+              ),
+            ],
+          ),
         ),
 
         CustonButtonOutlined(
