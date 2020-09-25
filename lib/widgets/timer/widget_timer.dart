@@ -2,8 +2,8 @@
 import 'dart:async';
 
 import 'package:fasted/widgets/timer/progress_painter.dart';
+import 'package:fasted/widgets/timer/timer_text.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class WidgetTimer extends StatefulWidget {
 
@@ -16,9 +16,12 @@ class WidgetTimer extends StatefulWidget {
   double width;
   double height;
 
+  final Duration Function(DateTime) computeFastDuration;
+
   WidgetTimer({Key key,
     @required this.startFast, @required this.endFast,
     @required this.width, @required this.height,
+    @required this.computeFastDuration,
   }) : super(key: key);
 
   @override
@@ -40,7 +43,6 @@ class _WidgetTimerState extends State<WidgetTimer> with SingleTickerProviderStat
 
   @override
   initState() {
-    print("INIT_STATE");
     super.initState();
      _controller = AnimationController(
       duration: const Duration(milliseconds: 700),
@@ -67,7 +69,6 @@ class _WidgetTimerState extends State<WidgetTimer> with SingleTickerProviderStat
             } else {
                 _currentTime = TimeOfDay.now();
                 _percentage += 1;
-                print("INC PERCENTAGE");
             }
           })
         }
@@ -101,8 +102,11 @@ class _WidgetTimerState extends State<WidgetTimer> with SingleTickerProviderStat
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                getProgressText(),
+                TimerText(
+                  computeFastDuration: this.widget.computeFastDuration
+                ),
                 Text( 
+                  // TODO implement streak counter
                   "streak. 6d",
                   style: TextStyle(
                     fontSize: 24,

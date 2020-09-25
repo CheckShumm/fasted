@@ -38,6 +38,16 @@ class _ScreenFastState extends State<ScreenFast> {
     }
   }
 
+  Duration computeFastDuration(DateTime currentTime) {
+    DateTime today = new DateTime.now();
+    Duration start = _times[_currentRangeValues.start.floor()];
+    int minutes = start.inMinutes;
+    int hours = (minutes/60).floor();
+    minutes -= (hours*60);
+    DateTime startTime = new DateTime(today.year, today.month, today.day, hours, minutes);
+    return DateTime.now().difference(startTime);
+  }
+
   String timetoString(int minutes) {
     int hours = (minutes/60).floor();
     minutes -= (hours*60);
@@ -58,14 +68,15 @@ class _ScreenFastState extends State<ScreenFast> {
 
     Duration start = _times[_currentRangeValues.start.floor()];
     Duration end = _times[_currentRangeValues.end.floor()];
-    print(timetoString(start.inMinutes));
+    
     return  Column(
       children: <Widget>[
         WidgetTimer(
           width: timerWidth,
           height: timerWidth,
           startFast: start,
-          endFast: end
+          endFast: end,
+          computeFastDuration: (currentTime) => computeFastDuration(currentTime),
         ),
         
         Padding(
