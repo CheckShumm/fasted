@@ -1,10 +1,8 @@
 
-import 'package:fasted/auth/auth_controller.dart';
 import 'package:fasted/views/screens/profile/auth_email.dart';
 import 'package:fasted/views/screens/profile/unauthorized.dart';
 import 'package:fasted/views/screens/screen.dart';
 import 'package:fasted/views/screens/screen_widget.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 

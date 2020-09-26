@@ -25,11 +25,20 @@ class ScreenFast extends StatefulWidget implements ScreenWidget {
 
 class _ScreenFastState extends State<ScreenFast> {
   
+  // TODO move these out of here ^^
   List<Duration> _times = new List<Duration>();
   RangeValues _currentRangeValues = RangeValues(40, 70);
+
+  // states
+  bool _fasting;
+  
   @override
   void initState() {
-    super.initState(); 
+    super.initState();
+
+    _fasting = true; // TODO read start time and compute this
+
+    // TODO should not be done here do this in constructor if you want 
     const increments = 4;
     Duration duration = Duration(hours: 0);
     for (int i = 0; i < increments*24 + 2; i++) {
@@ -40,8 +49,9 @@ class _ScreenFastState extends State<ScreenFast> {
 
   Duration computeFastDuration(DateTime currentTime) {
     DateTime today = new DateTime.now();
-    Duration start = _times[_currentRangeValues.start.floor()];
-    int minutes = start.inMinutes;
+    Duration time = (_fasting ? _times[_currentRangeValues.start.floor()] 
+                    : _times[_currentRangeValues.end.floor()]);
+    int minutes = time.inMinutes;
     int hours = (minutes/60).floor();
     minutes -= (hours*60);
     DateTime startTime = new DateTime(today.year, today.month, today.day, hours, minutes);
@@ -60,11 +70,8 @@ class _ScreenFastState extends State<ScreenFast> {
   Widget build(BuildContext context) {
 
     // screen dimensions
-    double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-
-    double timerWidth = 300;
-    double percentHeightTimer = timerWidth / height;
+    double timerWidth = width*0.75;
 
     Duration start = _times[_currentRangeValues.start.floor()];
     Duration end = _times[_currentRangeValues.end.floor()];
@@ -139,10 +146,13 @@ class _ScreenFastState extends State<ScreenFast> {
         CustonButtonOutlined(
           color: Colors.black,
           splashColor: Colors.grey,
-          text: "End Fast",
+          text: (_fasting ? "End " : "Start ") + "fast",
           textColor: Colors.black,
           borderColor: Colors.black,
-          width: 300,
+          width: width * 0.80,
+          onPressed: () {
+            setState((){_fasting = !_fasting;});
+          }
         )
       ],
     );

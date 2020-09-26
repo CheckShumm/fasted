@@ -10,16 +10,18 @@ class CustonButtonOutlined extends StatelessWidget {
   final Color borderColor;
   final String iconPath;
   final double width;
+  final Function onPressed;
 
   CustonButtonOutlined({
     Key key,
     this.text,
     this.textColor,
     this.borderColor,
-    @required this.color,
+    this.color,
     this.splashColor,
     this.iconPath,
-    @required this.width
+    this.width,
+    this.onPressed
     }) : super(key: key);
 
   @override
@@ -41,9 +43,9 @@ class CustonButtonOutlined extends StatelessWidget {
           shape: new RoundedRectangleBorder(
             borderRadius: new BorderRadius.circular(8.0),
           ),
-          onPressed: () => {},
+          onPressed: this.onPressed,
           child: Text(
-            "End Fast",
+            this.text,
             style: TextStyle(
               wordSpacing: 4.0,
               letterSpacing: 2.0,
