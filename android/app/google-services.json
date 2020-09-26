@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "682011130772",
+    "firebase_url": "https://fasted-6b220.firebaseio.com",
+    "project_id": "fasted-6b220",
+    "storage_bucket": "fasted-6b220.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:682011130772:android:5981f41d9a0597f3c86d81",
+        "android_client_info": {
+          "package_name": "com.dreamydodo.fasted"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "682011130772-t86klk4feu2s4k6m595714k52vqjhbrc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLY1JvfmwKK5QXVOqGFaDF1ej94wBdicU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "682011130772-t86klk4feu2s4k6m595714k52vqjhbrc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
