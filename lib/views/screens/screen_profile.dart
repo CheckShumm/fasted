@@ -1,10 +1,15 @@
 
+import 'package:fasted/backend/auth.dart';
+import 'package:fasted/blocs/bloc_user.dart';
+import 'package:fasted/blocs/states/states_user.dart';
+import 'package:fasted/model/user.dart';
 import 'package:fasted/views/screens/profile/auth_email.dart';
 import 'package:fasted/views/screens/profile/unauthorized.dart';
 import 'package:fasted/views/screens/screen.dart';
 import 'package:fasted/views/screens/screen_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 class ScreenProfile extends StatefulWidget implements ScreenWidget {
@@ -28,11 +33,11 @@ class _ScreenProfileState extends State<ScreenProfile> {
   // states
   bool unathorized = true;
   bool signUpFormEmail = false;
+  BlocUser blocUser = Auth.getBlocUser();
 
-  @override
-  Widget build(BuildContext context) {
-    return 
-      AnimatedSwitcher(
+
+  Widget buildAuthenticationWidget() {
+    return AnimatedSwitcher(
         duration: const Duration(milliseconds: 500),
         transitionBuilder: (Widget child, Animation<double> animation) {
           return ScaleTransition(child: child, scale: animation);
@@ -54,5 +59,26 @@ class _ScreenProfileState extends State<ScreenProfile> {
             },
           )
       );
+  }
+
+  Widget buildProfileWidget(User user) {
+    return Container(
+      child: Text(
+        user.getEmail()
+      )
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<BlocUser, StateUser>(
+      cubit: blocUser,
+      builder: (BuildContext context, stateUser) {
+        if (stateUser is StateUserAuthenticated) 
+          return buildProfileWidget(stateUser.user);
+        else
+          return buildAuthenticationWidget();
+      }
+    );
   }
 }

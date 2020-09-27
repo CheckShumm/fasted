@@ -22,10 +22,10 @@ class _TimerTextState extends State<TimerText> {
   void initState() {
     super.initState();
     _currentTime = DateTime.now();
-     timer = Timer.periodic(Duration(seconds: 15), (Timer t) => 
-      setState(() {
-        _currentTime = DateTime.now();
-      }));
+    timer = Timer.periodic(Duration(seconds: 15), (Timer t) => {
+        if (mounted)
+          setState(() { _currentTime = DateTime.now(); })
+    });
   }
   
   @override

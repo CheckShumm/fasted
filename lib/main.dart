@@ -1,4 +1,5 @@
 
+import 'package:fasted/backend/auth.dart';
 import 'package:fasted/views/splash_logo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
@@ -40,6 +41,7 @@ class App extends StatelessWidget {
         // Once complete, show your application
         if (snapshot.connectionState == ConnectionState.done) {
           print("Firebase connection successful.");
+          Auth.initAuthListener();
           return MaterialApp(
             title: 'fasted',
             home: home,
