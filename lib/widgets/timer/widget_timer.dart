@@ -10,8 +10,8 @@ class WidgetTimer extends StatefulWidget {
   Color dayColor = Colors.amber;
   Color nightColor = Colors.blue[300];
 
-  Duration startFast;
-  Duration endFast;
+  final DateTime fastStart;
+  final DateTime fastEnd;
 
   double width;
   double height;
@@ -19,7 +19,7 @@ class WidgetTimer extends StatefulWidget {
   final Duration Function(DateTime) computeFastDuration;
 
   WidgetTimer({Key key,
-    @required this.startFast, @required this.endFast,
+    @required this.fastStart, @required this.fastEnd,
     @required this.width, @required this.height,
     @required this.computeFastDuration,
   }) : super(key: key);
@@ -76,19 +76,8 @@ class _WidgetTimerState extends State<WidgetTimer> with SingleTickerProviderStat
     );
   }
 
-  getProgressText() {
-    return Text( 
-     TimeOfDay.now().hour.toString() + "h " + TimeOfDay.now().minute.toString() + "m",
-      style: TextStyle(
-        fontSize: 32,
-         fontWeight: FontWeight.w400, 
-         color: Colors.black
-      )
-    );
-  }
-
-  double _timeToPercentage(int minutes) {
-    return minutes/(60*24);
+  double timeToPercentage(int hour, int minute) {
+    return (hour*60 + minute)/(60*24);
   }
 
   progressView() {
@@ -128,12 +117,12 @@ class _WidgetTimerState extends State<WidgetTimer> with SingleTickerProviderStat
             circleWidth: 32.0,
             percentage: this.valueTween.evaluate(_controller),
             
-            startGoal: _timeToPercentage(720),
-            endGoal: _timeToPercentage(1200),
-            startNight: _timeToPercentage(1500),
-            endNight: _timeToPercentage(480),
-            startFast: _timeToPercentage(this.widget.startFast.inMinutes),
-            endFast: _timeToPercentage(this.widget.endFast.inMinutes),
+            startGoal: timeToPercentage(12, 30),
+            endGoal: timeToPercentage(20, 30),
+            startNight: timeToPercentage(22, 30),
+            endNight: timeToPercentage(5, 30),
+            startFast: timeToPercentage(this.widget.fastStart.hour, this.widget.fastStart.minute),
+            endFast: timeToPercentage(this.widget.fastEnd.hour, this.widget.fastEnd.minute),
           ),
         );
       });

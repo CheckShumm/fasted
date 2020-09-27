@@ -22,7 +22,7 @@ class _TimerTextState extends State<TimerText> {
   void initState() {
     super.initState();
     _currentTime = DateTime.now();
-    timer = Timer.periodic(Duration(seconds: 15), (Timer t) => {
+    timer = Timer.periodic(Duration(seconds: 1), (Timer t) => {
         if (mounted)
           setState(() { _currentTime = DateTime.now(); })
     });
@@ -33,7 +33,7 @@ class _TimerTextState extends State<TimerText> {
     //new Timer.periodic(Duration(seconds: 5), (Timer t) => setState((){}));
     Duration duration = this.widget.computeFastDuration(_currentTime);
     return Text( 
-      duration.inHours.toString() + "h " + (duration.inMinutes%24).toString() + "m",
+      duration.inHours.toString() + "h " + (duration.inMinutes%24).toString() + "m " + (duration.inSeconds - duration.inMinutes*60).toString(),
       style: TextStyle(
         fontSize: 32,
          fontWeight: FontWeight.w400, 

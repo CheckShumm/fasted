@@ -33,8 +33,6 @@ class _ScreenProfileState extends State<ScreenProfile> {
   // states
   bool unathorized = true;
   bool signUpFormEmail = false;
-  BlocUser blocUser = Auth.getBlocUser();
-
 
   Widget buildAuthenticationWidget() {
     return AnimatedSwitcher(
@@ -72,7 +70,7 @@ class _ScreenProfileState extends State<ScreenProfile> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BlocUser, StateUser>(
-      cubit: blocUser,
+      cubit: Auth.getBlocUser(),
       builder: (BuildContext context, stateUser) {
         if (stateUser is StateUserAuthenticated) 
           return buildProfileWidget(stateUser.user);

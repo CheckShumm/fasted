@@ -25,45 +25,27 @@ class ScreenFast extends StatefulWidget implements ScreenWidget {
 
 class _ScreenFastState extends State<ScreenFast> {
   
-  // TODO move these out of here ^^
-  List<Duration> _times = new List<Duration>();
-  RangeValues _currentRangeValues = RangeValues(40, 70);
-
   // states
   bool _fasting;
-  
+  DateTime _timeStart;
+  DateTime _timeEnd;
+
   @override
   void initState() {
     super.initState();
-
+    DateTime current = DateTime.now();
+    _timeStart = DateTime(current.year, current.month, current.day, 18, 30);
+    _timeEnd = DateTime(current.year, current.month, current.day, 13, 15);
     _fasting = true; // TODO read start time and compute this
-
-    // TODO should not be done here do this in constructor if you want 
-    const increments = 4;
-    Duration duration = Duration(hours: 0);
-    for (int i = 0; i < increments*24 + 2; i++) {
-      _times.add(duration);
-      duration += Duration(minutes: (60/increments).floor());
-    }
   }
 
   Duration computeFastDuration(DateTime currentTime) {
-    DateTime today = new DateTime.now();
-    Duration time = (_fasting ? _times[_currentRangeValues.start.floor()] 
-                    : _times[_currentRangeValues.end.floor()]);
-    int minutes = time.inMinutes;
-    int hours = (minutes/60).floor();
-    minutes -= (hours*60);
-    DateTime startTime = new DateTime(today.year, today.month, today.day, hours, minutes);
-    return DateTime.now().difference(startTime);
+    DateTime time = (_fasting ? _timeStart : _timeEnd);
+    return time.difference(DateTime.now());
   }
 
-  String timetoString(int minutes) {
-    int hours = (minutes/60).floor();
-    minutes -= (hours*60);
-    bool morning = hours%12 == 0 || hours <= 12;
-    String hourString = (hours%12 == 0 ? 12 : hours%12).toString() + "h";
-    return (hourString + " " + minutes.toString() + " " +  (morning? "am" : "pm")); 
+  String timeToString(DateTime time) {
+    return time.hour.toString() + "h " + time.minute.toString() + "m";
   }
 
   @override
@@ -72,41 +54,17 @@ class _ScreenFastState extends State<ScreenFast> {
     // screen dimensions
     double width = MediaQuery.of(context).size.width;
     double timerWidth = width*0.75;
-
-    Duration start = _times[_currentRangeValues.start.floor()];
-    Duration end = _times[_currentRangeValues.end.floor()];
     
     return  Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         WidgetTimer(
           width: timerWidth,
           height: timerWidth,
-          startFast: start,
-          endFast: end,
+          fastStart: _timeStart,
+          fastEnd: _timeEnd,
           computeFastDuration: (currentTime) => computeFastDuration(currentTime),
         ),
-        
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: RangeSlider(
-            activeColor: Colors.black,
-            inactiveColor: Colors.black,
-            values: _currentRangeValues,
-            min: 0,
-            max: 96,
-            divisions: 960,
-            labels: RangeLabels(
-              timetoString(start.inMinutes),
-              timetoString(end.inMinutes)
-            ),
-            onChanged: (RangeValues values) {
-              setState(() {
-                _currentRangeValues = values;
-              });
-            },
-          ),
-        ),
-
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Row(
@@ -122,7 +80,7 @@ class _ScreenFastState extends State<ScreenFast> {
                     )
                   ),
                   Text(
-                    timetoString(start.inMinutes),
+                    timeToString(_fasting ? _timeStart : _timeEnd),
                     style: TextStyle(
                       fontSize: 32
                     )
@@ -143,16 +101,19 @@ class _ScreenFastState extends State<ScreenFast> {
           ),
         ),
 
-        CustonButtonOutlined(
-          color: Colors.black,
-          splashColor: Colors.grey,
-          text: (_fasting ? "End " : "Start ") + "fast",
-          textColor: Colors.black,
-          borderColor: Colors.black,
-          width: width * 0.80,
-          onPressed: () {
-            setState((){_fasting = !_fasting;});
-          }
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: CustonButtonOutlined(
+            color: Colors.black,
+            splashColor: Colors.grey,
+            text: (_fasting ? "End " : "Start ") + "fast",
+            textColor: Colors.black,
+            borderColor: Colors.black,
+            width: width * 0.80,
+            onPressed: () {
+              setState((){_fasting = !_fasting;});
+            }
+          ),
         )
       ],
     );
