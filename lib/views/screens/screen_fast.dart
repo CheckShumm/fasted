@@ -70,11 +70,21 @@ class _ScreenFastState extends State<ScreenFast> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Column(
+              GestureDetector(
+                onTap: () async {
+                  DateTime date = DateTime.now();
+                  // ask for date if they are doing a multi day fast
+                  //DateTime date = await showDatePicker(context: context, initialDate: _timeStart, firstDate: DateTime(current.year, current.month), lastDate: current);
+                  TimeOfDay time = await showTimePicker(context: context, initialTime: TimeOfDay.fromDateTime(_timeStart));
+                  setState(() {
+                    _timeStart = DateTime(date.year, date.month, date.day, time.hour, time.minute);
+                  });
+                },
+                child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "started",
+                    (_fasting ? "ended" : "started"),
                     style: TextStyle(
                       fontSize: 12
                     )
@@ -87,16 +97,17 @@ class _ScreenFastState extends State<ScreenFast> {
                   ),
                 ],
               ),
-              CustomButtonRaised(
-                text: "8 : 16",
-                width: 100,
-                textColor: Colors.white,
-                color: Colors.green[300],
-                splashColor: Colors.green[50],
-                onPressed: () => {
-                  // go to fasting selection screen
-                }
-              ),
+            ),
+            CustomButtonRaised(
+              text: "8 : 16",
+              width: 100,
+              textColor: Colors.white,
+              color: Colors.green[300],
+              splashColor: Colors.green[50],
+              onPressed: () => {
+                // go to fasting selection screen
+              }
+            ),
             ],
           ),
         ),
@@ -106,7 +117,7 @@ class _ScreenFastState extends State<ScreenFast> {
           child: CustonButtonOutlined(
             color: Colors.black,
             splashColor: Colors.grey,
-            text: (_fasting ? "End " : "Start ") + "fast",
+            text: (_fasting ? "Start " : "End ") + "Fast",
             textColor: Colors.black,
             borderColor: Colors.black,
             width: width * 0.80,
