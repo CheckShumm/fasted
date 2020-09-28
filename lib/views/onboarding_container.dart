@@ -1,14 +1,16 @@
+
 import 'package:fasted/views/screens/screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import 'onboarding/onboarding_fast.dart';
+
 class OnBoardingContainer extends StatefulWidget {
   OnBoardingContainer({Key key}) : super(key: key);
-
   final String title = 'fasted';
-  final List<Screen> screens = [ ];
-  
-  final List<Widget> OnBoardingWidgetList = [];
+  final List<Widget> onboardingWidgetList = [
+    OnboardingFast()
+  ];
 
 
   @override
@@ -17,7 +19,7 @@ class OnBoardingContainer extends StatefulWidget {
 
 class _OnBoardingContainerState extends State<OnBoardingContainer> {
 
-  int _selectedIndex = 2;
+  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +50,7 @@ class _OnBoardingContainerState extends State<OnBoardingContainer> {
         height: heightScreen - heightAppBar,
         margin: const EdgeInsets.all(10.0),
         alignment: Alignment.center,
-        child: this.widget.OnBoardingWidgetList[_selectedIndex]
+        child: this.widget.onboardingWidgetList[_selectedIndex]
       ),
     );
   }

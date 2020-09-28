@@ -20,7 +20,7 @@ class ScreensContainer extends StatefulWidget {
     ScreenFast(screen: new Screen("Fast", Colors.green, Icons.schedule)), 
     ScreenData(screen: new Screen("Data", Colors.amber, Icons.show_chart)), 
     ScreenHealth(screen: new Screen("Health", Colors.red, Icons.favorite_border))
-    ];
+  ];
 
   @override
   _ScreensContainerState createState() => _ScreensContainerState();
@@ -28,7 +28,7 @@ class ScreensContainer extends StatefulWidget {
 
 class _ScreensContainerState extends State<ScreensContainer> {
 
-  int _selectedIndex = 2;
+  int _selectedIndex = 1;
 
   @override
   Widget build(BuildContext context) {

@@ -43,7 +43,6 @@ class _ScreenProfileState extends State<ScreenProfile> {
         child: (!signUpFormEmail) ?
           Unauthorized(
             onEmailPressed: () => setState(() { signUpFormEmail = true; }),
-              
             visible: !signUpFormEmail
           ) :
           AuthEmail(
@@ -52,7 +51,6 @@ class _ScreenProfileState extends State<ScreenProfile> {
             onSignUp: (String email, String password) async {
               setState(() { 
                 signUpFormEmail = false; 
-                //TODO authorized = true;
               });
             },
           )

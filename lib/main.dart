@@ -1,5 +1,6 @@
 
 import 'package:fasted/backend/auth.dart';
+import 'package:fasted/views/onboarding_container.dart';
 import 'package:fasted/views/splash_logo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
@@ -8,7 +9,7 @@ import 'package:fasted/views/screens_container.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(App(home: ScreensContainer()));
+  runApp(App(home: OnBoardingContainer()));
 }
 
 class App extends StatelessWidget {
