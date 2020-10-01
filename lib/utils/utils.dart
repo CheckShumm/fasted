@@ -4,12 +4,9 @@
 */
 
 class Utils {
-  static final Utils _utils = Utils._internal();
 
-  factory Utils() {
-    return _utils;
+  static String formatTime(int hour, int minute) {
+
   }
-
-  Utils._internal();
 
 }

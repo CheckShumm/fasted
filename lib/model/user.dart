@@ -5,9 +5,9 @@ class User {
 
   // **************** Private Members **************** \\ 
 
-  final String email;
-  final String uID;
-  String displayName;
+  final String email;         // user's email
+  final String uID;           // user's unique ID
+  String displayName;         // what to call the user by
 
 
   // ****************** Constructor ****************** \\ 
